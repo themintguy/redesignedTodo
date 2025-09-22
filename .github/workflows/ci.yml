@@ -12,16 +12,17 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9 
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -31,3 +32,4 @@ jobs:
 
       - name: Build
         run: pnpm build
+
